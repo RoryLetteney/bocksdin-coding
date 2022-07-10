@@ -31,5 +31,5 @@ Typical features of a linked list
 - Helper functions
   - insert
   - insertAt
-  - removeElement
   - indexOf
+  - removeElement
