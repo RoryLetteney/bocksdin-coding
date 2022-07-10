@@ -3,14 +3,11 @@ LINKED LIST
 What is a linked list?
 - A linked list is a collection of information located in non-consecutive memory.
 
-Example of linked lists in the real world?
-- Trains
-  - A series of separate cars linked together
-  - You can traverse through them, but you must go in order
-  - You can insert and remove cars at any point in the line
-
 Why is it useful?
 - The primary strength of a linked list comes from the way its information is stored. The items in a linked list are stored with references to one another spread across non-consecutive memory. This makes it more memory efficient than arrays, which rely on consecutive memory chunks.
+
+What is non-consecutive-memory?
+- Non-consecutive memory is exactly that, memory chunks that are not necessarily adjacent to one another.
 
 Types of linked lists
 - Singly

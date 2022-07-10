@@ -17,7 +17,6 @@ circularLinkedList.insert = function (value) {
         
         // find the last Node in the list to update its "next" reference
         let currentNode = circularLinkedList.head;
-
         while (currentNode !== null) {
             
             // if the next Node is the head, then we are at the end of the list
@@ -28,29 +27,20 @@ circularLinkedList.insert = function (value) {
 
                 // break the loop
                 return;
-
             }
-
             else {
-
                 currentNode = currentNode.next;
-            
             }
-
         }        
 
         // set head.next to reference the new node
         circularLinkedList.head.next = newNode;
-
-
     } 
-    
+
     // if the list is empty
     else {
-
         // set newNode.next reference to newNode
         newNode.next = newNode;
-
     }
 
     // replace existing head reference with newNode reference
@@ -58,26 +48,47 @@ circularLinkedList.insert = function (value) {
 
     // increase size value of linked list
     circularLinkedList.size++;
-
 }
 
 
+circularLinkedList.insert(5);
+circularLinkedList.insert(2);
+circularLinkedList.insert(10);
+
+// {
+//     "size": 3,
+//     "head": {
+//         "value": 10,
+//         "next": {
+//             "value": 2,
+//             "next": {
+//                 "value": 5,
+//                 "next": {
+//                     "value": 10,
+//                     "next": { ... }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+
 // assume circularLinkedList is a doubly linked list
+
+
 circularLinkedList.insertAt = function (index, value) {
 
     // determine the midpoint of the linked list
     const midpoint = Math.floor(circularLinkedList.size / 2);
-
-    // create pointer variable
-    // start with head of linked list
-    let currentNode = circularLinkedList.head;
 
     // create a current index counter
     // if the index at which to insert is less than the midpoint, start at the beginning, else start at the end
         // use size instead of size - 1 because head can be seen as either 0 or size - 1 + 1
     let currentIndex = index < midpoint ? 0 : circularLinkedList.size;
 
-    // while currentNode is not null, continue
+    // create pointer variable
+    // start with head of linked list
+    let currentNode = circularLinkedList.head;
     while (currentNode !== null) {
 
         // determine next index
@@ -100,12 +111,8 @@ circularLinkedList.insertAt = function (index, value) {
 
             // break the loop
             return;
-
         }
-        
         else {
-
-            
             // reference the next node in the list
             if (index < midpoint) {
                 currentNode = currentNode.next;
@@ -113,19 +120,14 @@ circularLinkedList.insertAt = function (index, value) {
                 // increase the currentIndex value
                 currentIndex++;
             }
-
             else {
                 currentNode = currentNode.previous;
 
                 // decrease the currentIndex value
                 currentIndex--; 
             }
-
-
         }
-
     }
-
 }
 
 

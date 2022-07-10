@@ -3,6 +3,12 @@ import LinkedList, { DoubleReferenceNode } from "../LinkedList";
 
 const doublyLinkedList = new LinkedList();
 
+const DoubleReferenceNode = value => ({
+    value,
+    previous: null,
+    next: null
+});
+
 
 doublyLinkedList.insert = function (value) {
     
@@ -22,6 +28,31 @@ doublyLinkedList.insert = function (value) {
     doublyLinkedList.size++;
 
 }
+
+
+doublyLinkedList.insert(5);
+doublyLinkedList.insert(2);
+
+// {
+//     "size": 2,
+//     "head": {
+//         "value": 2,
+//         "previous": null,
+//         "next": {
+//             "value": 5,
+//             "previous": {
+//                 "value": 2,
+//                 "previous": null,
+//                 "next": {
+//                     "value": 5,
+//                     "previous": { ... }
+//                     "next": null
+//                 }
+//             },
+//             "next": null
+//         }
+//     }
+// }
 
 
 doublyLinkedList.insertAt = function (index, value) {
@@ -54,24 +85,61 @@ doublyLinkedList.insertAt = function (index, value) {
             // set currentNode.next to reference the newNode
             currentNode.next = newNode;
 
+            // increase size value of linked list
+            doublyLinkedList.size++;
+
             // break the loop
             return;
-
         }
-        
         else {
-
             // reference the next node in the list
             currentNode = currentNode.next;
 
-            // increment the currentIndex value
+            // increase the currentIndex value
             currentIndex++;
-
         }
-
     }
-
 }
+
+
+doublyLinkedList.insertAt(1, 35);
+
+// {
+//     "size": 3,
+//     "head": {
+//         "value": 2,
+//         "previous": null,
+//         "next": {
+//             "value": 35,
+//             "previous": {
+//                 "value": 2,
+//                 "previous": null,
+//                 "next": {
+//                     "value": 35,
+//                     "previous": { ... }
+//                     "next": { ... }
+//                 }
+//             },
+//             "next": {
+//                 "value": 5,
+//                 "previous": {
+//                     "value": 35,
+//                     "previous": {
+//                         "value": 2,
+//                         "previous": { ... }
+//                         "next": { ... }
+//                     },
+//                     "next": {
+//                         "value": 5,
+//                         "previous": { ... }
+//                         "next": null
+//                     }
+//                 },
+//                 "next": null
+//             }
+//         }
+//     }
+// }
 
 
 doublyLinkedList.indexOf = function (value) {
@@ -127,6 +195,9 @@ doublyLinkedList.removeElement = function (value) {
             // set currentNode.next to reference the node-to-remove's next reference
             currentNode.next = currentNode.next.next;
 
+            // decrease the size value of the linked list
+            doublyLinkedList.size--;
+
             // break the loop
             return;
 
@@ -142,3 +213,28 @@ doublyLinkedList.removeElement = function (value) {
     }
 
 }
+
+
+doublyLinkedList.removeElement(2);
+
+// {
+//     "size": 2,
+//     "head": {
+//         "value": 35,
+//         "previous": null,
+//         "next": {
+//             "value": 5,
+//             "previous": {
+//                 "value": 35,
+//                 "previous": null,
+//                 "next": {
+//                     "value": 5,
+//                     "previous": { ... }
+//                     "next": null
+//                 }
+//             },
+//             "next": null
+//         }
+//     }
+// }
+

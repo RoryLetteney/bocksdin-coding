@@ -21,6 +21,25 @@ singlyLinkedList.insert = function (value) {
 }
 
 
+singlyLinkedList.insert(5);
+singlyLinkedList.insert(2);
+singlyLinkedList.insert(10);
+
+// {
+//     "size": 3,
+//     "head": {
+//         "value": 10,
+//         "next": {
+//             "value": 2,
+//             "next": {
+//                 "value": 5,
+//                 "next": null
+//             }
+//         }
+//     }
+// }
+
+
 singlyLinkedList.insertAt = function (index, value) {
 
     // create pointer variable
@@ -35,7 +54,7 @@ singlyLinkedList.insertAt = function (index, value) {
 
         // insert a new Node if the next currentIndex is the one for which we are searching
         if (currentIndex + 1 === index) {
-            
+
             // create a new Node
             let newNode = new Node(value);
 
@@ -50,22 +69,37 @@ singlyLinkedList.insertAt = function (index, value) {
 
             // break the loop
             return;
-
         }
         
         else {
-
             // reference the next node in the list
             currentNode = currentNode.next;
 
             // increment the currentIndex value
             currentIndex++;
-
         }
-
     }
-
 }
+
+
+singlyLinkedList.insertAt(1, 35);
+
+// {
+//     "size": 4,
+//     "head": {
+//         "value": 10,
+//         "next": {
+//             "value": 35,
+//             "next": {
+//                 "value": 2,
+//                 "next": {
+//                     "value": 5,
+//                     "next": null
+//                 }
+//             }
+//         }
+//     }
+// }
 
 
 singlyLinkedList.indexOf = function (value) {
@@ -101,6 +135,11 @@ singlyLinkedList.indexOf = function (value) {
 }
 
 
+singlyLinkedList.indexOf(35); // --> returns 1
+singlyLinkedList.indexOf(5); // --> returns 3
+singlyLinkedList.indexOf(42); // --> returns -1
+
+
 // can take in either a value or an index
 // for the purpose of this demonstration we will look for a specific value
 singlyLinkedList.removeElement = function (value) {
@@ -123,16 +162,28 @@ singlyLinkedList.removeElement = function (value) {
 
             // break the loop
             return;
-
         }
-
         else {
-
             // reference the next node in the list
             currentNode = currentNode.next;
-
         }
-
     }
-
 }
+
+
+singlyLinkedList.removeElement(2);
+
+// {
+//     "size": 3,
+//     "head": {
+//         "value": 10,
+//         "next": {
+//             "value": 35,
+//             "next": {
+//                 "value": 5,
+//                 "next": null
+//             }
+//         }
+//     }
+// }
+

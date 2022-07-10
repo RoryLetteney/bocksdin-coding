@@ -1,3 +1,5 @@
+
+
 export default LinkedList = () => ({
     size: 0,
     head: null
@@ -15,3 +17,4 @@ export const DoubleReferenceNode = value => ({
     previous: null,
     next: null
 });
+
