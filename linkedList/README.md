@@ -33,3 +33,11 @@ Typical features of a linked list
   - insertAt
   - indexOf
   - removeElement
+
+
+Code examples
+- general linked list examples
+- singly linked list
+- doubly linked list
+- circular linked list (singly)
+- circular linked list (doubly, faster search for insertAt)
