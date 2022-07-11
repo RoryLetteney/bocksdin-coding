@@ -23,10 +23,10 @@ circularLinkedList.insert = function (value) {
             if (currentNode.next === circularLinkedList.head) {
                 
                 // set the last Node in the list to reference the newNode
-                currentNode.next.next = newNode;
+                currentNode.next = newNode;
 
                 // break the loop
-                return;
+                break;
             }
             else {
                 currentNode = currentNode.next;
