@@ -241,7 +241,7 @@ for i in range(len(cities)):
 # routes.append(Route(3, 5, 15, 40)) 
 # routes.append(Route(5, 3, 15, 40)) 
 
-mutation_probability = 0.01
+mutation_probability = 0.05
 number_of_generations = 1000
 population_size = 2000
 ga = GeneticAlgorithm()
