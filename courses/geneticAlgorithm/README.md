@@ -6,13 +6,16 @@
 2. What is a "genetic algorithm"?
     - Gene
     - Combinatorial
-    - Possible use cases
     - Benefits
+        - Able to attempt many different combinations quickly
+        - Can provide multiple "optimal" solutions
+        - Requires less information than some other machine learning algorithms
     - Limitations
         - Complex problem = expensive fitness function
             - Better for small pieces of a larger problem
         - "Best solution" is relative
             - Best solution it found, not necessarily best solution possible
+    - Possible use cases
     - Example rundown
         - Backpack packing
     - Pieces of implementation (https://www.ripublication.com/ijcir17/ijcirv13n7_15.pdf)
@@ -47,7 +50,7 @@
         - value
         - weight
     - Define constraint
-        - 3kg
+        - 2.5kg
     - Define value
         - Max value added
 2. Create items
