@@ -93,58 +93,6 @@ class Individual:
     return children
   # END single_point_crossover method
 
-  def two_point_crossover(self, other_individual):
-    cutoff_one = round(random() * len(self.chromosome))
-    cutoff_two = cutoff_one
-
-    while cutoff_two == cutoff_one:
-      cutoff_two = round(random() * len(self.chromosome))
-
-    cutoffs = sorted([cutoff_one, cutoff_two])
-    children_chromosomes = [self.chromosome[0:cutoffs[0]] + other_individual.chromosome[cutoffs[0]:cutoffs[1]] + self.chromosome[cutoffs[1]:],
-                            other_individual.chromosome[0:cutoffs[0]] + self.chromosome[cutoffs[0]:cutoffs[1]] + other_individual.chromosome[cutoffs[1]:]]
-
-    children = [Individual(self.items, children_chromosomes[0], self.generation+1),
-                Individual(self.items, children_chromosomes[1], self.generation+1)]
-
-    return children
-  # END two_point_crossover method
-
-  def uniform_crossover(self, other_individual):
-    child_chromosomes = [[], []]
-    for i in range(len(self.chromosome)):
-      if i % 2 == 0:
-        child_chromosomes[0].append(self.chromosome[i])
-        child_chromosomes[1].append(other_individual.chromosome[i])
-      else:
-        child_chromosomes[1].append(self.chromosome[i])
-        child_chromosomes[0].append(other_individual.chromosome[i])
-
-    children = [Individual(self.items, child_chromosomes[0], self.generation+1),
-                Individual(self.items, child_chromosomes[1], self.generation+1)]
-
-    return children
-  # END uniform_crossover_method
-
-  def sinusoidal_motion_crossover(self, other_individual):
-    child_chromosomes = [[], []]
-    for i in range(len(self.chromosome)):
-      if len(child_chromosomes[0]) < len(self.chromosome):
-        child_chromosomes[0].append(self.chromosome[i])
-      else:
-        child_chromosomes[1].append(self.chromosome[i])
-
-      if len(child_chromosomes[0]) < len(self.chromosome):
-        child_chromosomes[0].append(other_individual.chromosome[i])
-      else:
-        child_chromosomes[1].append(other_individual.chromosome[i])
-
-    children = [Individual(self.items, child_chromosomes[0], self.generation+1),
-                Individual(self.items, child_chromosomes[1], self.generation+1)]
-
-    return children
-  # END sinusoidal_motion_crossover
-
   def mutation(self, rate=0.01):
     for i in range(len(self.chromosome)):
       if random() < rate:
