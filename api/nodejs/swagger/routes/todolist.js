@@ -77,12 +77,17 @@ router.get('/todolist/entries', async (req, res, next) => {
  *           schema:
  *             type: object
  *             properties:
- *               title:
- *                 type: string
- *                 required: true
- *               due_date:
- *                 type: string
- *                 required: true
+ *               entries:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     title:
+ *                       type: string
+ *                       required: true
+ *                     due_date:
+ *                       type: string
+ *                       required: true
  *     responses:
  *       200:
  *         description: Array of newly created entries
@@ -135,10 +140,13 @@ router.post('/todolist/entries', async (req, res, next) => {
  *           schema:
  *             type: object
  *             properties:
- *               title:
- *                 type: string
- *               due_date:
- *                 type: string
+ *               data:
+ *                 type: object
+ *                 properties:
+ *                   title:
+ *                     type: string
+ *                   due_date:
+ *                     type: string
  *     responses:
  *       200:
  *         description: Array with updated entry
