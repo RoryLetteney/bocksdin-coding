@@ -4,6 +4,7 @@ const Router = require('express').Router;
 
 const router = module.exports = new Router();
 
+const { validate } = require('../_utils');
 const { createEntries, updateEntry, deleteEntry } = require('./validation');
 
 let todolistEntries = [];
@@ -79,12 +80,17 @@ router.get('/todolist/entries', async (req, res, next) => {
  *           schema:
  *             type: object
  *             properties:
- *               title:
- *                 type: string
- *                 required: true
- *               due_date:
- *                 type: string
- *                 required: true
+ *               entries:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     title:
+ *                       type: string
+ *                       required: true
+ *                     due_date:
+ *                       type: string
+ *                       required: true
  *     responses:
  *       200:
  *         description: Array of newly created entries
@@ -105,8 +111,7 @@ router.get('/todolist/entries', async (req, res, next) => {
 router.post('/todolist/entries', async (req, res, next) => {
   try {
 
-    const validation = createEntries.validate(req.body, { abortEarly: false });
-    console.log(validation);
+    validate(createEntries, req.body);
 
     let newEntries = [], maxId = Math.max(...todolistEntries.map(entry => entry.id), 0);
     for (let entry of req.body.entries) {
@@ -141,10 +146,13 @@ router.post('/todolist/entries', async (req, res, next) => {
  *           schema:
  *             type: object
  *             properties:
- *               title:
- *                 type: string
- *               due_date:
- *                 type: string
+ *               data:
+ *                 type: object
+ *                 properties:
+ *                   title:
+ *                     type: string
+ *                   due_date:
+ *                     type: string
  *     responses:
  *       200:
  *         description: Array with updated entry
@@ -164,10 +172,12 @@ router.post('/todolist/entries', async (req, res, next) => {
 
 router.put('/todolist/entries/:id', async (req, res, next) => {
   try {
-    const id = parseInt(req.params.id);
+    req.body.id = parseInt(req.params.id);
+
+    validate(updateEntry, req.body);
 
     for (let i = 0; i < todolistEntries.length; i++) {
-      if (todolistEntries[i].id === id) {
+      if (todolistEntries[i].id === req.body.id) {
         todolistEntries[i] = { ...todolistEntries[i], ...req.body.data };
         res.json([todolistEntries[i]]);
         break;
@@ -216,6 +226,8 @@ router.put('/todolist/entries/:id', async (req, res, next) => {
 
 router.delete('/todolist/entries/:id', async (req, res, next) => {
   try {
+    validate(deleteEntry, req.params);
+
     todolistEntries = todolistEntries.filter(entry => entry.id !== parseInt(req.params.id));
 
     if (todolistEntries.length === 0)

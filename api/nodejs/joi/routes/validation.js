@@ -1,14 +1,13 @@
 'use strict';
 
 const Joi = require('joi');
-
-const dueDatePattern = new RegExp('^\d{2}\/\d{2}\/\d{4}\sat\s\d{2}:\d{2}(am|pm)$');
+const { dueDateRegExp } = require('../_utils');
 
 module.exports = {
   createEntries: Joi.object({
     entries: Joi.array().items(Joi.object({
       title: Joi.string().required(),
-      due_date: Joi.string().pattern(dueDatePattern).required()
+      due_date: Joi.string().pattern(dueDateRegExp).required()
     }))
   }),
 
@@ -16,7 +15,7 @@ module.exports = {
     id: Joi.number().integer().min(1).required(),
     data: Joi.object({
       title: Joi.string().optional(),
-      due_date: Joi.string().pattern(dueDatePattern).optional()
+      due_date: Joi.string().pattern(dueDateRegExp).optional()
     })
     .or('title', 'due_date')
     .required()
