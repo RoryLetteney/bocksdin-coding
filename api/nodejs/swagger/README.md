@@ -1,21 +1,9 @@
-require('dotenv').config();
-const express = require('express'),
-      app = express(),
-      PORT = process.env.PORT || 3000,
-      bodyParser = require('body-parser');
+### `npm i swagger-jsdoc swagger-ui-express`
 
+### server.js >
+```
 const swaggerUI = require('swagger-ui-express'),
       swaggerJsDoc = require('swagger-jsdoc');
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-app.use(require('./routes/todolist'));
-
-app.use((err, req, res, next) => {
-  res.status(err.status || 500);
-  res.json({ error: { status: err.status, message: err.message }});
-});
 
 const options = {
   definition: {
@@ -37,7 +25,5 @@ const options = {
 
 const specs = swaggerJsDoc(options);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(specs));
-
-app.listen(PORT);
-
-console.log('api listening on: ', PORT);
+```
+### < server.js
